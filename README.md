@@ -125,6 +125,12 @@ python -m vllm.entrypoints.openai.api_server --served-model-name Megrez-3B-Instr
 Megrez-3B-Instruct supports function-calling, especially optimized for web-search agents. Please refer to our release [InfiniWebSearch](https://github.com/infinigence/InfiniWebSearch) framework for a more detailed information.
 
 
+### Throughput Benchmarking
+```bash
+python benchmark_throughput.py --model /local/path/to/Qwen-7B-Chat/ --input-len 128 --output-len 128 --max-num-seqs 8 --max-model-len 256 --trust-remote-code
+```
+
+
 <a name="performance"></a>
 ## Performance
 We have evaluated Megrez-3B using the open-source evaluation tool [OpenCompass](https://github.com/open-compass/opencompass) on several important benchmarks. Some of the evaluation results are shown in the table below. For more evaluation results, please visit the [OpenCompass leaderboard](https://rank.opencompass.org.cn/).
