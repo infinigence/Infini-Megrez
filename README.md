@@ -1,231 +1,164 @@
-# Infini-Megrez: Open Source LLM Family Developed By Infinigence-AI
-
+<h1 align="center">Megrez-3B: 软硬协同释放无穹端侧智能</h1>
 <p align="center">
     <img src="assets/megrez_logo.png" width="400"/>
 <p>
-
 <p align="center">
-        🤗 <a href="https://huggingface.co/Infinigence/Megrez-3B-Instruct">HuggingFace</a>&nbsp&nbsp | &nbsp&nbsp🤖 <a href="https://modelscope.cn/organization/Infinigence">ModelScope</a>&nbsp&nbsp | &nbsp&nbsp🖥️ <a href="http://39.107.190.207:8888">Demo</a>&nbsp&nbsp | &nbsp&nbsp💬 <a href="https://cloud.infini-ai.com/assets/png/wechat_community.7dbbc0b51726745659605.png">WeChat Groups</a>&nbsp&nbsp | &nbsp&nbsp📖 <a href="https://cloud.infini-ai.com/assets/png/wechat_official_account.1f7e61401726745659605.png">WeChat Official</a>&nbsp&nbsp
-</p>
+        🤗 <a href="https://huggingface.co/Infinigence/Megrez-3B-Instruct">Megrez-3B-Instruct</a>&nbsp&nbsp| &nbsp&nbsp🤗 <a href="https://huggingface.co/Infinigence/Megrez-3B-Omni"> Megrez-3B-Omni</a>&nbsp&nbsp  &nbsp | &nbsp&nbsp📖 <a href="assets/wechat-official.jpg">WeChat Official</a>&nbsp&nbsp  |  &nbsp&nbsp💬 <a href="assets/wechat-group.jpg">WeChat Groups</a>&nbsp&nbsp
+<h4 align="center">
+    <p>
+        <b>中文</b> | <a href="https://github.com/infinigence/Infini-Megrez/blob/main/README_EN.md">English</a>
+    <p>
+</h4>
 
-## Introduction
-Megrez-3B-Instruct is a large language model independently trained by Infinigence AI. Designed through an integrated approach to software and hardware optimization, Megrez-3B aims to provide ultra-fast inference, compact yet powerful performance, and highly accessible edge-side intelligent solutions. The model offers several key advantages:
+# 目录
 
-- **High Accuracy**: Despite its relatively small size of 3 billion parameters, Megrez-3B significantly narrows the performance gap through substantial improvements in data quality. It effectively compresses the capabilities of a previous 14-billion parameter model into a 3-billion parameter framework, achieving exceptional performance on mainstream benchmarks.
-- **High Speed**: A smaller model does not inherently guarantee faster speeds. Megrez-3B leverages software and hardware co-optimization to ensure high compatibility with mainstream hardware, delivering a 300% improvement in inference speed compared to models of equivalent accuracy.
-- **Ease of Use**: During the model's development, we deliberated on whether to prioritize structural designs that would allow for enhanced software and hardware collaboration (e.g., through ReLU activation, sparsity, and more streamlined architectures) or to maintain a classical structure for ease of use. We opted for the latter, implementing the traditional LLaMA2 architecture. This decision allows developers to deploy the model across various platforms without modification, thereby reducing the complexity of further development.
-- **Versatile Applications**: Based on Megrez-3B-Instruct, we provide a comprehensive WebSearch solution. In comparison to search_with_lepton, we have conducted targeted training on the model, enabling it to automatically determine when to call the search function and provide superior summarization results. Users can build their own Kimi or Perplexity based on this feature, overcoming common issues of hallucinations and knowledge-reserve limitations of smaller models.
+- [目录](#目录)
+- [模型下载](#模型下载)
+- [Megrez-3B-Omni](#megrez-3b-omni)
+  - [评测结果](#评测结果)
+    - [图片理解能力](#图片理解能力)
+    - [速度](#速度)
+  - [快速上手](#快速上手)
+    - [在线体验](#在线体验)
+    - [本地部署](#本地部署)
+  - [注意事项](#注意事项)
+- [Megrez-3B](#megrez-3b)
+  - [WebSearch](#websearch)
+- [开源协议及使用声明](#开源协议及使用声明)
+
+# 模型下载
+
+| HuggingFace                                                  | ModelScope                  |Modelers
+| :-----------------------------------------------------------:|:---------------------------:|:--------:|
+| [Megrez-3B-Instruct-Omni](https://huggingface.co/Infinigence/Megrez-3B-Omni) | [Megrez-3B-Instruct-Omni](https://www.modelscope.cn/models/InfiniAI/Megrez-3B-Omni) |[Megrez-3B-Instruct-Omni](https://modelers.cn/models/INFINIGENCE-AI/Megrez-3B-Omni)  |
+| [Megrez-3B-Instruct](https://huggingface.co/Infinigence/Megrez-3B-Instruct) | [Megrez-3B-Instruct](https://www.modelscope.cn/models/InfiniAI/Megrez-3b-Instruct)|[Megrez-3B-Instruct](https://modelers.cn/models/INFINIGENCE-AI/Megrez-3B-Instruct)|
+
+# Megrez-3B-Omni
+Megrez-3B-Omni是由无问芯穹（[Infinigence AI](https://cloud.infini-ai.com/platform/ai)）研发的**端侧全模态**理解模型，基于无问大语言模型Megrez-3B-Instruct扩展，同时具备图片、文本、音频三种模态数据的理解分析能力，在三个方面均取得最优精度
+- 在图像理解方面，基于SigLip-400M构建图像Token，在OpenCompass榜单上（综合8个主流多模态评测基准）平均得分66.2，超越LLaVA-NeXT-Yi-34B等更大参数规模的模型。Megrez-3B-Omni也是在MME、MMMU、OCRBench等测试集上目前精度最高的图像理解模型之一，在场景理解、OCR等方面具有良好表现。
+- 在语言理解方面，Megrez-3B-Omni并未牺牲模型的文本处理能力，综合能力较单模态版本（Megrez-3B-Instruct）精度变化小于2%，保持在C-EVAL、MMLU (Pro）、AlignBench等多个测试集上的最优精度优势，依然取得超越上一代14B模型的能力表现
+- 在语音理解方面，采用Qwen2-Audio/whisper-large-v3的Encoder作为语音输入，支持中英文语音输入及多轮对话，支持对输入图片的语音提问，根据语音指令直接响应文本，在多项基准任务上取得了领先的结果
+
+## 评测结果
+### 图片理解能力
+
+- 上图为Megrez-3B-Omni与其他开源模型在图片理解各任务的能力比较；  
+- 下图为Megrez-3B-Omni在opencompass测试集上表现，参考 [InternVL 2.5 Blog Post](https://internvl.github.io/blog/2024-12-05-InternVL-2.5/)
 
 
-<a name="news-and-updates"></a>
-## News and Updates
-- 2024.09.27: We released the Megrez-3B.
+![Multitask](assets/multitask.jpg)
+
+![OpencompassBmk](assets/opencompass.jpg)
+
+更多指标数据请见 🤗 [Megrez-3B-Omni](https://huggingface.co/Infinigence/Megrez-3B-Omni)
+
+### 速度
+
+|                | image_tokens | prefill (tokens/s) | decode (tokens/s) |
+|:--------------:|:------------:|:------------------:|:-----------------:|
+| Megrez-3B-Omni |      448     |       6312.66      |       **1294.9**      |
+| Qwen2-VL-2B    |     1378     |       7349.39      |       685.66      |
+| MiniCPM-V-2_6  |      448     |       2167.09      |       452.51      |
+
+实验设置： 
+- 测试环境：NVIDIA H100，vLLM下输入128个Text token和一张1480x720大小图片，输出128个token，num_seqs固定为8
+- Qwen2-VL-2B虽然其具备更小尺寸的基座模型，但编码上述大小图片后的image_token相较Megrez-3B-Omni多很多，导致此实验下的decode速度小于Megrez-3B-Omni
 
 
-<a name="quick-start"></a>
-## Quick Start
-### Requirements
-```
-torch==2.1.2
-numpy==1.26.4
-transformers==4.44.2
-accelerate==0.34.2
-vllm==0.6.1.post2
-```
+## 快速上手
 
-### Download Models
-You can download our models through HuggingFace or ModelScope.
-| Model Name             | HF Link                                               | MS Link |
-| ---------------------- | ----------------------------------------------------- | ------- |
-| Megrez-3B-Instruct     | https://huggingface.co/Infinigence/Megrez-3B-Instruct | coming soon   |
+### 在线体验
 
-### Inference
-#### 🤗 HuggingFace Transformers
+[HF Chat Demo](https://huggingface.co/spaces/Infinigence/Megrez-3B-Omni)
+
+### 本地部署
+
+环境安装和vLLM推理代码等部署问题请参考 [Infini-Megrez-Omni](https://github.com/infinigence/Infini-Megrez-Omni)
+
+如下是一个使用transformers进行推理的例子，通过在content字段中分别传入text、image和audio，可以图文/图音等多种模态和模型进行交互。
 ```python
 import torch
-from transformers import AutoTokenizer, AutoModelForCausalLM
+from transformers import AutoModelForCausalLM
 
-model_path = "Infinigence/Megrez-3B-Instruct"
-device = "cuda"
-tokenizer = AutoTokenizer.from_pretrained(model_path, trust_romote_code=True)
-model = AutoModelForCausalLM.from_pretrained(model_path, torch_dtype=torch.bfloat16, device_map=device, trust_remote_code=True)
+path = "{{PATH_TO_PRETRAINED_MODEL}}"  # Change this to the path of the model.
 
-messages = [{"role": "user", "content": "How to make braised chicken in brown sauce?"}]
-model_inputs = tokenizer.apply_chat_template(messages, return_tensors="pt", add_generation_prompt=True).to(device)
-model_outputs = model.generate(
-    model_inputs,
-    do_sample = True,
-    max_new_tokens=2048,
-    top_p=0.9,
-    temperature=0.7
+model = (
+    AutoModelForCausalLM.from_pretrained(
+        path,
+        trust_remote_code=True,
+        torch_dtype=torch.bfloat16,
+        attn_implementation="flash_attention_2",
+    )
+    .eval()
+    .cuda()
 )
 
-output_token_ids = [
-    model_outputs[i][len(model_inputs[i]):] for i in range(len(model_inputs))
+# Chat with text and image
+messages = [
+    {
+        "role": "user",
+        "content": {
+            "text": "Please describe the content of the image.",
+            "image": "./data/sample_image.jpg",
+        },
+    },
 ]
-responses = tokenizer.batch_decode(output_token_ids, skip_special_tokens=True)[0]
-print(responses)
-```
 
-#### 🤖 ModelScope
-```python
-import torch
-from modelscope import AutoTokenizer, AutoModelForCausalLM
-
-model_path = "Infinigence/Megrez-3B-Instruct"
-device = "cuda"
-tokenizer = AutoTokenizer.from_pretrained(model_path, trust_romote_code=True)
-model = AutoModelForCausalLM.from_pretrained(model_path, torch_dtype=torch.bfloat16, device_map=device, trust_remote_code=True)
-
-messages = [{"role": "user", "content": "How to make braised chicken in brown sauce?"}]
-model_inputs = tokenizer.apply_chat_template(messages, return_tensors="pt", add_generation_prompt=True).to(device)
-model_outputs = model.generate(
-    model_inputs,
-    do_sample = True,
-    max_new_tokens=2048,
-    top_p=0.9,
-    temperature=0.7
-)
-
-output_token_ids = [
-    model_outputs[i][len(model_inputs[i]):] for i in range(len(model_inputs))
+# Chat with audio and image
+messages = [
+    {
+        "role": "user",
+        "content": {
+            "image": "./data/sample_image.jpg",
+            "audio": "./data/sample_audio.m4a",
+        },
+    },
 ]
-responses = tokenizer.batch_decode(output_token_ids, skip_special_tokens=True)[0]
-print(responses)
-```
 
-#### 💻 vLLM
-```python
-from transformers import AutoTokenizer
-from vllm import LLM, SamplingParams
-
-model_name = "Infinigence/Megrez-3B-Instruct"
-tokenizer = AutoTokenizer.from_pretrained(model_name, trust_remote_code=True)
-llm = LLM(
-    model=model_name,
-    trust_remote_code=True,
-    tensor_parallel_size=1
+MAX_NEW_TOKENS = 100
+response = model.chat(
+    messages,
+    sampling=False,
+    max_new_tokens=MAX_NEW_TOKENS,
+    temperature=0,
 )
-
-messages = [{"role": "user", "content": "How to make braised chicken in brown sauce?"}]
-input_text = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
-sampling_params = SamplingParams(top_p=0.9, temperature=0.7, max_tokens=2048, repetition_penalty=1.02)
-outputs = llm.generate(prompts=input_text, sampling_params=sampling_params)
-
-print(outputs[0].outputs[0].text)
+print(response)
 ```
 
-### Deployment
-#### vLLM API Server
-```bash
-python -m vllm.entrypoints.openai.api_server --served-model-name Megrez-3B-Instruct --model /local/path/to/Megrez-3B-Instruct --port 8000 --tensor-parallel-size 1
-```
+## 注意事项
+1. 请将图片尽量在首轮输入以保证推理效果，语音和文本无此限制，可以自由切换
+2. 语音识别（ASR）场景下，只需要将content['text']修改为“将语音转化为文字。”
+3. OCR场景下开启采样可能会引入语言模型幻觉导致的文字变化，可考虑关闭采样进行推理（sampling=False），但关闭采样可能引入模型复读
 
-### Tool Use
-Megrez-3B-Instruct supports function-calling, especially optimized for web-search agents. Please refer to our release [InfiniWebSearch](https://github.com/infinigence/InfiniWebSearch) framework for a more detailed information.
+# Megrez-3B
 
+Megrez-3B-Instruct是由无问芯穹（[Infinigence AI](https://cloud.infini-ai.com/platform/ai)）完全自主训练的大语言模型。Megrez-3B旨在通过软硬协同理念，打造一款极速推理、小巧精悍、极易上手的端侧智能解决方案。Megrez-3B具有以下优点：
 
-### Throughput Benchmarking
-```bash
-python benchmark_throughput.py --model /local/path/to/Qwen-7B-Chat/ --input-len 128 --output-len 128 --max-num-seqs 8 --max-model-len 256 --trust-remote-code
-```
+- 高精度：Megrez-3B虽然参数规模只有3B，但通过提升数据质量，成功弥合模型能力代差，将上一代14B模型的能力成功压缩进3B大小的模型，在主流榜单上取得了优秀的性能表现。
+- 高速度：模型小≠速度快。Megrez-3B通过软硬协同优化，确保了各结构参数与主流硬件高度适配，推理速度领先同精度模型最大300%。
+- 简单易用：模型设计之初我们进行了激烈的讨论：应该在结构设计上留出更多软硬协同的空间（如ReLU、稀疏化、更精简的结构等），还是使用经典结构便于开发者直接用起来？我们选择了后者，即采用最原始的LLaMA结构，开发者无需任何修改便可将模型部署于各种平台，最小化二次开发复杂度。
+- 丰富应用：我们提供了完整的WebSearch方案。我们对模型进行了针对性训练，使模型可以自动决策搜索调用时机，在搜索和对话中自动切换，并提供更好的总结效果。我们提供了完整的部署工程代码 [github](https://github.com/infinigence/InfiniWebSearch)，用户可以基于该功能构建属于自己的Kimi或Perplexity，克服小模型常见的幻觉问题和知识储备不足的局限。
 
+速度精度模型大小散点图如下，位置越靠近右上表明模型越好越快。更多指标数据请见 🤗 [Megrez-3B-Instruct](https://huggingface.co/Infinigence/Megrez-3B-Instruct)
 
-<a name="performance"></a>
-## Performance
-We have evaluated Megrez-3B using the open-source evaluation tool [OpenCompass](https://github.com/open-compass/opencompass) on several important benchmarks. Some of the evaluation results are shown in the table below. For more evaluation results, please visit the [OpenCompass leaderboard](https://rank.opencompass.org.cn/).
+![MMLU](assets/mmlu.jpg)
+![MTBench](assets/mtbench.jpg)
 
+具体模型能力结果和部署代码参考 [Infini-Megrez](https://github.com/infinigence/Infini-Megrez/blob/main/megrez/README.md)
 
-### Model Card
-| Name | Architecture | Context Length | # Total Params | # Non-Emb Params | Training Data | Supported Languages |
- |:---------:|:---------:|:---------:|:---------:|:---------:|:---------:|:---------:| 
- | Megrez-3B-Instruct | Llama-2 with GQA | 4K | 2.92B | 2.29B | 2T tokens | Chinese & English |
+## WebSearch
+我们模型进行了针对性训练，并提供了完整的工程部署方案。[InfiniWebSearch](https://github.com/infinigence/InfiniWebSearch) 具有以下优势：
+1. 自动决定调用时机：自动决策搜索调用时机，在搜索和对话中自动切换，避免一直调用或一直不调用
+2. 上下文理解：根据多轮对话生成合理的搜索query或处理搜索结果，更好的理解用户意图
+3. 带参考信息的结构化输出：每个结论注明出处，便于查验
+4. 一个模型两种用法：通过sys prompt区分WebSearch功能开启与否，兼顾LLM的高精度与WebSearch的用户体验，两种能力不乱窜
 
-### General Ability
-| Models | Instruction-tuned | Release Date | # Non-Emb Params (B) | Inference Speed (tokens/s) | C-EVAL | CMMLU | MMLU | MMLU-Pro | HumanEval | MBPP | GSM8K | MATH |
- |:---------:|:---------:|:---------:|:---------:|:---------:|:---------:|:---------:|:---------:|:---------:|:---------:|:---------:|:---------:|:---------:| 
- | Megrez-3B-Instruct | Y | 2024.09.24 | 2.3 | 2329.38 | 81.4 | 74.5 | 70.6 | 48.2 | 62.2 | 77.4 | 64.8 | 26.5 | 
- | Qwen2-1.5B | | 2024.06.06 | 1.3 | 3299.53 | 70.6 | 70.3 | 56.5 | 21.8 | 31.1 | 37.4 | 58.5 | 21.7 | 
- | Qwen2.5-1.5B | | 2024.09.19 | 1.3 | 3318.81 | - | - | 60.9 | 28.5 | 37.2 | 60.2 | 68.5 | 35.0 | 
- | MiniCPM-2B | | 2024.04.11 | 2.4 | 1930.79 | 51.1 | 51.1 | 53.5 | - | 50.0 | 47.3 | 53.8 | 10.2 | 
- | Qwen2.5-3B | | 2024.09.19 | 2.8 | 2248.33 | - | - | 65.6 | 34.6 | 42.1 | 57.1 | 79.1 | 42.6 | 
- | Qwen2.5-3B-Instruct | Y | 2024.09.19 | 2.8 | 2248.33 | - | - | - | 43.7 | 74.4 | 72.7 | 86.7 | 65.9 | 
- | Qwen1.5-4B | | 2024.02.04 | 3.2 | 1837.91 | 67.6 | 66.7 | 56.1 | - | 25.6 | 29.2 | 57.0 | 10.0 |
-  | Phi-3.5-mini-instruct | Y | 2024.08.23 | 3.6 | 1559.09 | 46.1 | 46.9 | 69.0 | - | 62.8 | 69.6 | 86.2 | 48.5 | 
-  | MiniCPM3-4B | Y | 2024.09.05 | 3.9 | 901.05 | 73.6 | 73.3 | 67.2 | - | 74.4 | 72.5 | 81.1 | 46.6 | 
-  | Yi-1.5-6B | | 2024.05.11 | 5.5 | 1542.66 | - | 70.8 | 63.5 | - | 36.5 | 56.8 | 62.2 | 28.4 | 
-  | Qwen1.5-7B | | 2024.02.04 | 6.5 | 1282.27 | 74.1 | 73.1 | 61.0 | 29.9 | 36.0 | 51.6 | 62.5 | 20.3 |
-  | Qwen2-7B | | 2024.06.07 | 6.5 | 1279.37 | 83.2 | 83.9 | 70.3 | 40.0 | 51.2 | 65.9 | 79.9 | 44.2 | 
-  | Qwen2.5-7B | | 2024.09.19 | 6.5 | 1283.37 | - | - | 74.2 | 45.0 | 57.9 | 74.9 | 85.4 | 49.8 |
-   | Meta-Llama-3.1-8B | | 2024.07.23 | 7.0 | 1255.91 | - | - | 66.7 | 37.1 | - | - | - | - | 
-   | GLM-4-9B-chat | Y | 2024.06.04 | 8.2 | 1076.13 | 75.6 | 71.5 | 72.4 | - | 71.8 | - | 79.6 | 50.6 |
-   | Baichuan2-13B-Base | | 2023.09.06 | 12.6 | 756.71 | 58.1 | 62.0 | 59.2 | - | 17.1 | 30.2 | 52.8 | 10.1 |
-   | Qwen1.5-14B | | 2024.02.04 | 12.6 | 735.61 | 78.7 | 77.6 | 67.6 | - | 37.8 | 44.0 | 70.1 | 29.2 |
+我们对模型进行了针对性训练，使模型可以自动决策搜索调用时机，在搜索和对话中自动切换，并提供更好的总结效果。我们提供了完整的部署工程代码 ，用户可以基于该功能构建属于自己的Kimi或Perplexity，克服小模型常见的幻觉问题和知识储备不足的局限。
 
-### Instruction Performance 
-| Models              | Release Date | # Non-Emb Params (B) | Inference Speed (tokens/s) | MT-Bench | AlignBench |
-|:-------------------:|:------------:|:--------------------:|:--------------------------:|:--------:|:----------:|
-| Megrez-3B-Instruct  |  2024.09.24  |         2.3          |           2329.4           |   8.76   |    6.91    |
-| MiniCPM-2B-sft-bf16 |  2024.04.11  |         2.4          |           1930.8           |     -    |    4.64    |
-| MiniCPM-2B-dpo-bf16 |  2024.04.11  |         2.4          |           1930.8           |   7.25   |      -     |
-| Qwen2.5-3B-Instruct |  2024.09.19  |         2.8          |           2248.3           |     -    |      -     |
-| MiniCPM3-4B         |  2024.09.05  |         3.9          |           901.1            |   8.41   |    6.74    |
-| Yi-1.5-6B-Chat      |  2024.05.11  |         5.5          |           1542.7           |   7.50   |    6.20    |
-| Qwen1.5-7B-Chat     |  2024.02.04  |         6.5          |           1282.3           |   7.60   |    6.20    |
-| Qwen2-7b-Instruct   |  2024.06.07  |         6.5          |           1279.4           |   8.41   |    7.21    |
-| Qwen2.5-7B-Instruct |  2024.09.19  |         6.5          |           1283.4           |   8.75   |      -     |
-| glm-4-9b-chat       |  2024.06.04  |         8.2          |           1076.1           |   8.35   |    7.01    |
-| Baichuan2-13B-Chat  |  2023.09.06  |         12.6         |           756.7            |     -    |    5.25    |
+![WebSearchDemo](assets/websearch_demo.gif)
 
-### Other Performance
-#### LLM Leaderboard
-| Models                | Release Date | # Non-Emb Params (B) | Inference Speed (tokens/s) | IFeval Strict-Prompt |  BBH | ARC_C | HellaSwag | WinoGrande | TriviaQA |
-|:---------------------:|:------------:|:--------------------:|:--------------------------:|:--------------------:|:----:|:-----:|:---------:|:----------:|:--------:|
-| Megrez-3B-Instruct    |  2024.09.24  |         2.3          |           2329.4           |         74.7         | 61.0 |  90.9 |    83.6   |    72.7    |   82.5   |
-| MiniCPM-2B            |  2024.04.11  |         2.4          |           1930.8           |           -          | 36.9 |  68.0 |    68.3   |      -     |   32.5   |
-| Qwen2.5-3B            |  2024.09.19  |         2.8          |           2248.3           |           -          | 56.3 |  56.5 |    74.6   |    71.1    |     -    |
-| Qwen2.5-3B-Instruct   |  2024.09.19  |         2.8          |           2248.3           |         58.2         |   -  |   -   |     -     |      -     |     -    |
-| Phi-3.5-mini-instruct |  2024.08.23  |         3.6          |           1559.1           |           -          | 69.0 |  84.6 |    69.4   |    68.5    |     -    |
-| MiniCPM3-4B           |  2024.09.05  |         3.9          |           901.1            |         68.4         | 70.2 |   -   |     -     |      -     |     -    |
-| Qwen2-7B-Instruct     |  2024.06.07  |         6.5          |           1279.4           |           -          | 62.6 |  60.6 |    80.7   |    77.0    |     -    |
-| Meta-Llama-3.1-8B     |   2024.07.23 |         7.0          |           1255.9           |         71.5         | 28.9 |  83.4 |     -     |      -     |     -    |
-<details><summary><b>On-device Inference</b></summary>
-    
-<div align="center">
-    <img src="assets/deployment_android.gif" width="50%" alt="Example GIF">
-</div>
+# 开源协议及使用声明
+- 协议：本仓库中代码依照 [Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0) 协议开源。
+- 幻觉：大模型天然存在幻觉问题，用户使用过程中请勿完全相信模型生成的内容。
+- 价值观及安全性：本模型已尽全力确保训练过程中使用的数据的合规性，但由于数据的大体量及复杂性，仍有可能存在一些无法预见的问题。如果出现使用本开源模型而导致的任何问题，包括但不限于数据安全问题、公共舆论风险，或模型被误导、滥用、传播或不当利用所带来的任何风险和问题，我们将不承担任何责任。
 
-</details>
-
-
-
-<a name="limitations"></a>
-## Limitations
-- **Hallucination**: LLMs inherently suffer from hallucination issues. Users are advised not to fully trust the content generated by the model. If more factually accurate outputs are desired, we recommend utilizing our WebSearch framework, as detailed in [InfiniWebSearch](https://github.com/infinigence/InfiniWebSearch).
-- **Mathematics & Reasoning**: SLMs tend to produce incorrect calculations or flawed reasoning chains in tasks involving mathematics and reasoning, leading to erroneous outputs. Notably, the softmax distribution of SLMs is less sharp compared to LLMs, making them more prone to inconsistent reasoning results, particularly under higher temperature settings. This is especially evident in deterministic tasks such as mathematics and logical reasoning. We recommend lowering the temperature or verifying through multiple inference attempts in such cases.
-- **System Prompt**: As with most LLMs, we recommend using the default system prompt from the `chat_template` in the configuration file for a stable and balanced performance. This model release has de-emphasized capabilities related to domain-specific applications such as role-playing. For users with specific domain needs, we suggest fine-tuning the model accordingly.
-- **Values & Safety**: Every effort has been made to ensure the compliance of the data used during the training of this model. However, given the large scale and complexity of the data, unforeseen issues may still arise. We do not assume any responsibility for any issues that may result from the use of this open-source model, including but not limited to data security concerns, risks related to public opinion, or any risks and problems arising from the misguidance, misuse, or dissemination of the model.
-
-
-<a name="license"></a>
-## License
-All our open-source models are licensed under Apache 2.0. You can find the license files in this repository and the respective Hugging Face repositories. 
-
-
-<a name="citation"></a>
-## Citation
-```
-@misc{yuan2024lveval,
-      title={LV-Eval: A Balanced Long-Context Benchmark with 5 Length Levels Up to 256K}, 
-      author={Tao Yuan and Xuefei Ning and Dong Zhou and Zhijie Yang and Shiyao Li and Minghui Zhuang and Zheyue Tan and Zhuyu Yao and Dahua Lin and Boxun Li and Guohao Dai and Shengen Yan and Yu Wang},
-      year={2024},
-      eprint={2402.05136},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL}
-}
-```
-
-
-<a name="contact"></a>
-## Contact
-If you are interested to leave a message to either our research team or product team, join our [WeChat groups](https://infinigence.feishu.cn/3aa43f45-6d47-47cd-b544-38cef330db84)
