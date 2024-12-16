@@ -69,7 +69,7 @@ Megrez-3B-Omni是由无问芯穹（[Infinigence AI](https://cloud.infini-ai.com/
 
 ### 在线体验
 
-[HF Chat Demo](https://huggingface.co/spaces/Infinigence/Infinigence-AI-Chat-Demo)
+[HF Chat Demo]([https://huggingface.co/spaces/Infinigence/Infinigence-AI-Chat-Demo](https://huggingface.co/spaces/Infinigence/Megrez-3B-Omni))
 
 ### 本地部署
 
