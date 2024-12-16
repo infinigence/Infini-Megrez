@@ -6,8 +6,8 @@
 <p align="center">
         🔗 <a href="https://github.com/infinigence/Infini-Megrez">GitHub</a>&nbsp&nbsp | &nbsp&nbsp
         🏠 <a href="https://cloud.infini-ai.com/genstudio/model/mo-c73owqiotql7lozr">Infini-AI mass</a>&nbsp&nbsp | &nbsp&nbsp
-        📖 <a href="https://huggingface.co/Infinigence/Megrez-3B-Instruct/blob/main/assets/wechat-official.jpg">WeChat Official</a>&nbsp&nbsp | &nbsp&nbsp
-        💬 <a href="https://huggingface.co/Infinigence/Megrez-3B-Instruct/blob/main/assets/wechat-group.jpg">WeChat Groups</a>&nbsp&nbsp   
+        📖 <a href="../assets/wechat-official.jpg">WeChat Official</a>&nbsp&nbsp | &nbsp&nbsp
+        💬 <a href="../assets/wechat-group.jpg">WeChat Groups</a>&nbsp&nbsp   
 </p>
 <h4 align="center">
     <p>

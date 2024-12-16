@@ -3,8 +3,7 @@
     <img src="assets/megrez_logo.png" width="400"/>
 <p>
 <p align="center">
-        🤗 <a href="https://huggingface.co/Infinigence/Megrez-3B-Instruct">Megrez-3B-Instruct</a>&nbsp&nbsp| &nbsp&nbsp🤗 <a href="https://huggingface.co/Infinigence/Megrez-3B-Omni"> Megrez-3B-Omni</a>&nbsp&nbsp  &nbsp | &nbsp&nbsp📖 <a href="https://cloud.infini-ai.com/assets/png/wechat_official_account.1f7e61401727063822266.png">WeChat Official</a>&nbsp&nbsp  |  &nbsp&nbsp💬 <a href="https://cloud.infini-ai.com/assets/png/wechat_community.7dbbc0b51727063822266.png">WeChat Groups</a>&nbsp&nbsp   
-</p>
+        🤗 <a href="https://huggingface.co/Infinigence/Megrez-3B-Instruct">Megrez-3B-Instruct</a>&nbsp&nbsp| &nbsp&nbsp🤗 <a href="https://huggingface.co/Infinigence/Megrez-3B-Omni"> Megrez-3B-Omni</a>&nbsp&nbsp  &nbsp | &nbsp&nbsp📖 <a href="assets/wechat-official.jpg">WeChat Official</a>&nbsp&nbsp  |  &nbsp&nbsp💬 <a href="assets/wechat-group.jpg">WeChat Groups</a>&nbsp&nbsp
 <h4 align="center">
     <p>
         <b>中文</b> | <a href="https://github.com/infinigence/Infini-Megrez/blob/main/README_EN.md">English</a>
@@ -13,6 +12,7 @@
 
 # 目录
 
+- [目录](#目录)
 - [模型下载](#模型下载)
 - [Megrez-3B-Omni](#megrez-3b-omni)
   - [评测结果](#评测结果)
@@ -21,7 +21,7 @@
   - [快速上手](#快速上手)
     - [在线体验](#在线体验)
     - [本地部署](#本地部署)
-    - [注意事项](#注意事项)
+  - [注意事项](#注意事项)
 - [Megrez-3B](#megrez-3b)
   - [WebSearch](#websearch)
 - [开源协议及使用声明](#开源协议及使用声明)
@@ -69,7 +69,7 @@ Megrez-3B-Omni是由无问芯穹（[Infinigence AI](https://cloud.infini-ai.com/
 
 ### 在线体验
 
-[HF Chat Demo]([https://huggingface.co/spaces/Infinigence/Infinigence-AI-Chat-Demo](https://huggingface.co/spaces/Infinigence/Megrez-3B-Omni))
+[HF Chat Demo](https://huggingface.co/spaces/Infinigence/Megrez-3B-Omni)
 
 ### 本地部署
 
