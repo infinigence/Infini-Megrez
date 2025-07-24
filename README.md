@@ -1,164 +1,360 @@
-<h1 align="center">Megrez-3B: 软硬协同释放无穹端侧智能</h1>
-<p align="center">
-    <img src="assets/megrez_logo.png" width="400"/>
-<p>
-<p align="center">
-        🤗 <a href="https://huggingface.co/Infinigence/Megrez-3B-Instruct">Megrez-3B-Instruct</a>&nbsp&nbsp| &nbsp&nbsp🤗 <a href="https://huggingface.co/Infinigence/Megrez-3B-Omni"> Megrez-3B-Omni</a>&nbsp&nbsp  &nbsp | &nbsp&nbsp📖 <a href="assets/wechat-official.jpg">WeChat Official</a>&nbsp&nbsp  |  &nbsp&nbsp💬 <a href="assets/wechat-group.jpg">WeChat Groups</a>&nbsp&nbsp
-<h4 align="center">
-    <p>
-        <b>中文</b> | <a href="https://github.com/infinigence/Infini-Megrez/blob/main/README_EN.md">English</a>
-    <p>
-</h4>
+<div align="center">
+  <img src="./assets/megrez-logo.png" alt="Megrez Logo" width="400" />
 
-# 目录
+  <br>
 
-- [目录](#目录)
-- [模型下载](#模型下载)
-- [Megrez-3B-Omni](#megrez-3b-omni)
-  - [评测结果](#评测结果)
-    - [图片理解能力](#图片理解能力)
-    - [速度](#速度)
-  - [快速上手](#快速上手)
-    - [在线体验](#在线体验)
-    - [本地部署](#本地部署)
-  - [注意事项](#注意事项)
-- [Megrez-3B](#megrez-3b)
-  - [WebSearch](#websearch)
-- [开源协议及使用声明](#开源协议及使用声明)
+  <a href="https://huggingface.co/Infinigence/Megrez2-3x7B-A3B-Preview">
+    <b>🤗 Hugging Face</b>
+  </a> &nbsp;|&nbsp;
+  <a href="https://www.modelscope.cn/models/InfiniAI/Megrez2-3x7B-A3B-Preview">
+    <b>🤖 Model Scope</b>
+  </a> &nbsp;|&nbsp;
+  <a href="./docs/tech_report.pdf">
+    <b>📄 Tech Report</b>
+  </a> &nbsp;|&nbsp;
+  <a href="https://huggingface.co/spaces/Infinigence/Megrez2-3x7B-A3B-Preview">
+    <b>💻 Demo</b>
+  </a> &nbsp;|&nbsp;
+  <a href="./assets/wechat-official.jpg">
+    <b>💬 WeChat Official</b>
+  </a> &nbsp;
+
+  <br>
+
+  <strong>中文 | [English](./README_EN.md)</strong>
+
+</div>
+
+# 更新日志
+
+- [2025.07.24] 发布 [Megrez2-3x7B-A3B-Preview](https://github.com/infinigence/Infini-Megrez/tree/main) 专为终端设备设计的大模型，兼顾MoE的精度杠杆与Dense的总参数量友好。
+
+- [2024.12.16] 发布 [Megrez-3B-Omni](https://huggingface.co/Infinigence/Megrez-3B-Omni) 基于Megrez-3B-Instruct 扩展，同时具备图片、文本、音频三种模态数据的理解分析能力。
+
+- [2024.12.16] 发布 [Megrez-3B-Instruct](https://github.com/infinigence/Infini-Megrez/tree/Megrez-3B) 模型能够比肩 Yi-1.5-6B-Chat、 Qwen2-7B-Instruct、 GLM-4-9B-Chat 和 Baichuan2-13B-Chat 等多个6B-13B参数量的模型。
 
 # 模型下载
 
-|       HuggingFace       |        ModelScope       |         Modelers        |        Wisemodel        |
-|:-----------------------:|:-----------------------:|:-----------------------:|:-----------------------:|
-| [Megrez-3B-Instruct-Omni](https://huggingface.co/Infinigence/Megrez-3B-Omni) | [Megrez-3B-Instruct-Omni](https://www.modelscope.cn/models/InfiniAI/Megrez-3B-Omni) | [Megrez-3B-Instruct-Omni](https://modelers.cn/models/INFINIGENCE-AI/Megrez-3B-Omni) | [Megrez-3B-Instruct-Omni](https://www.wisemodel.cn/models/Infinigence/Megrez-3B-Omni) |
-| [Megrez-3B-Instruct](https://huggingface.co/Infinigence/Megrez-3B-Instruct) | [Megrez-3B-Instruct](https://www.modelscope.cn/models/InfiniAI/Megrez-3b-Instruct)|[Megrez-3B-Instruct](https://modelers.cn/models/INFINIGENCE-AI/Megrez-3B-Instruct)  |    [Megrez-3B-Instruct](https://www.wisemodel.cn/models/Infinigence/Megrez-3B-Instruct)   |
+<div align="center">
 
-# Megrez-3B-Omni
-Megrez-3B-Omni是由无问芯穹（[Infinigence AI](https://cloud.infini-ai.com/platform/ai)）研发的**端侧全模态**理解模型，基于无问大语言模型Megrez-3B-Instruct扩展，同时具备图片、文本、音频三种模态数据的理解分析能力，在三个方面均取得最优精度
-- 在图像理解方面，基于SigLip-400M构建图像Token，在OpenCompass榜单上（综合8个主流多模态评测基准）平均得分66.2，超越LLaVA-NeXT-Yi-34B等更大参数规模的模型。Megrez-3B-Omni也是在MME、MMMU、OCRBench等测试集上目前精度最高的图像理解模型之一，在场景理解、OCR等方面具有良好表现。
-- 在语言理解方面，Megrez-3B-Omni并未牺牲模型的文本处理能力，综合能力较单模态版本（Megrez-3B-Instruct）精度变化小于2%，保持在C-EVAL、MMLU (Pro）、AlignBench等多个测试集上的最优精度优势，依然取得超越上一代14B模型的能力表现
-- 在语音理解方面，采用Qwen2-Audio/whisper-large-v3的Encoder作为语音输入，支持中英文语音输入及多轮对话，支持对输入图片的语音提问，根据语音指令直接响应文本，在多项基准任务上取得了领先的结果
+| HuggingFace | ModelScope |
+|:---:|:---:|
+| [Megrez2-3x7B-A3B-Preview](https://huggingface.co/Infinigence/Megrez2-3x7B-A3B-Preview) | [Megrez2-3x7B-A3B-Preview](https://www.modelscope.cn/models/InfiniAI/Megrez2-3x7B-A3B-Preview) |
+| [Megrez-3B-Omni](https://huggingface.co/Infinigence/Megrez-3B-Omni) | [Megrez-3B-Omni](https://www.modelscope.cn/models/InfiniAI/Megrez-3B-Omni) |
+| [Megrez-3B-Instruct](https://huggingface.co/Infinigence/Megrez-3B-Instruct) | [Megrez-3B-Instruct](https://www.modelscope.cn/models/InfiniAI/Megrez-3b-Instruct) |
 
-## 评测结果
-### 图片理解能力
-
-- 上图为Megrez-3B-Omni与其他开源模型在图片理解各任务的能力比较；  
-- 下图为Megrez-3B-Omni在opencompass测试集上表现，参考 [InternVL 2.5 Blog Post](https://internvl.github.io/blog/2024-12-05-InternVL-2.5/)
+</div>
 
 
-![Multitask](assets/multitask.jpg)
+# Megrez2-3x7B-A3B-Preview
 
-![OpencompassBmk](assets/opencompass.jpg)
+## 模型简介
 
-更多指标数据请见 🤗 [Megrez-3B-Omni](https://huggingface.co/Infinigence/Megrez-3B-Omni)
+Megrez2-3x7B-A3B-Preview 是专为终端设备设计的大模型，兼顾MoE的精度杠杆与Dense的总参数量友好。本次发布的为Megrez 2.0预览版本，训练数据量5T Tokens，未来我们计划完成更大规模的数据训练，并提高模型的推理和Agent能力，正式版本预计今年年内发布。
 
-### 速度
+## 基础信息
 
-|                | image_tokens | prefill (tokens/s) | decode (tokens/s) |
-|:--------------:|:------------:|:------------------:|:-----------------:|
-| Megrez-3B-Omni |      448     |       6312.66      |       **1294.9**      |
-| Qwen2-VL-2B    |     1378     |       7349.39      |       685.66      |
-| MiniCPM-V-2_6  |      448     |       2167.09      |       452.51      |
+<div align="center">
 
-实验设置： 
-- 测试环境：NVIDIA H100，vLLM下输入128个Text token和一张1480x720大小图片，输出128个token，num_seqs固定为8
-- Qwen2-VL-2B虽然其具备更小尺寸的基座模型，但编码上述大小图片后的image_token相较Megrez-3B-Omni多很多，导致此实验下的decode速度小于Megrez-3B-Omni
+| | |
+|:---:|:---:|
+| **Architecture** | Mixture-of-Experts (MoE) |
+| **Total Parameters** | 3x7B |
+| **Activated Parameters** | 3B |
+| **Experts Shared Frequency**| 3 |
+| **Number of Layers** (Dense layer included) | 31 |
+| **Number of Dense Layers** | 1 |
+| **Attention Hidden Dimension** | 2048 |
+| **MoE Hidden Dimension** (per Expert) | 1408 |
+| **Number of Attention Heads** | 16 |
+| **Number of Experts** | 64 |
+| **Selected Experts per Token** | 6 |
+| **Number of Shared Experts** | 4 |
+| **Vocabulary Size** | 128,880 |
+| **Context Length** | 32K |
+| **Base Frequency of RoPE** | 1,000,000 |
+| **Attention Mechanism** | GQA |
+| **Activation Function** | SwiGLU |
+</div>
 
+## 性能测试
 
-## 快速上手
+我们使用开源评测工具 [OpenCompass](https://github.com/open-compass/opencompass) 对 Megrez2-3x7B-A3B-Preview 进行了评测，部分评测结果如下表所示。
 
-### 在线体验
+<div align="center">
+<table>
+<thead>
+<tr>
+<th align="center">Benchmark</th>
+<th align="center">Metric</th>
+<th align="center"><sup>Megrez2-3x7B<br>-A3B-Preview</sup></th>
+<th align="center"><sup>Qwen2.5-3B</sup></th>
+<th align="center"><sup>Qwen2.5-7B</sup></th>
+<th align="center"><sup>Qwen3-4B</sup></th>
+<th align="center"><sup>Qwen3-8B</sup></th>
+<th align="center"><sup>Phi-4-mini</sup></th>
+<th align="center"><sup>Gemma-3-4B</sup></th>
+<th align="center"><sup>GPT-4o-mini <br><sup>2024-07-18</sup></sup></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">Activate Params (B)</td>
+<td align="center"></td>
+<td align="center">3.0</td>
+<td align="center">3.1</td>
+<td align="center">7.6</td>
+<td align="center">4.0</td>
+<td align="center">8.2</td>
+<td align="center">3.8</td>
+<td align="center">4.3</td>
+<td align="center">-</td>
+</tr>
+<tr>
+<td align="center">Stored Params (B)</td>
+<td align="center"></td>
+<td align="center">7.5</td>
+<td align="center">3.1</td>
+<td align="center">7.6</td>
+<td align="center">4.0</td>
+<td align="center">8.2</td>
+<td align="center">3.8</td>
+<td align="center">4.3</td>
+<td align="center">-</td>
+</tr>
+<tr>
+<td align="center" colspan=9><strong>General Tasks</strong></td>
+</tr>
+<tr>
+<td align="center">C-EVAL</td>
+<td align="center">EM</td>
+<td align="center"><strong>91.7</strong></td>
+<td align="center">68.2</td>
+<td align="center">76.2</td>
+<td align="center">72.2</td>
+<td align="center">77.9</td>
+<td align="center">40.0</td>
+<td align="center">-</td>
+<td align="center">66.3</td>
+</tr>
+<tr>
+<td align="center">MMLU-Pro</td>
+<td align="center">EM</td>
+<td align="center"><strong>67.6</strong></td>
+<td align="center">43.7</td>
+<td align="center">56.3</td>
+<td align="center">-</td>
+<td align="center">-</td>
+<td align="center">52.8</td>
+<td align="center">43.6</td>
+<td align="center">-</td>
+</tr>
+<td align="center" colspan=9><strong>Instruction Tasks</strong></td>
+<tr>
+<td align="center">IF-Eval</td>
+<td align="center">Prompt Strict</td>
+<td align="center">80.2</td>
+<td align="center">58.2</td>
+<td align="center">71.2</td>
+<td align="center">81.2</td>
+<td align="center">83.0</td>
+<td align="center">68.6</td>
+<td align="center"><strong>90.2</strong></td>
+<td align="center">80.4</td>
+</tr>
+<td align="center" colspan=9><strong>Math & STEM Tasks</strong></td>
+<tr>
+<td align="center">MATH-500</td>
+<td align="center">EM</td>
+<td align="center">81.6</td>
+<td align="center">65.9</td>
+<td align="center">75.5</td>
+<td align="center">84.8</td>
+<td align="center"><strong>87.4</strong></td>
+<td align="center">64.0</td>
+<td align="center">75.6</td>
+<td align="center">78.2</td>
+</tr>
+<tr>
+<td align="center">GSM8K</td>
+<td align="center">EM</td>
+<td align="center">83.6</td>
+<td align="center">86.7</td>
+<td align="center">91.6</td>
+<td align="center">-</td>
+<td align="center"><strong>93.2</strong></td>
+<td align="center">88.6</td>
+<td align="center">89.2</td>
+<td align="center">-</td>
+</tr>
+<td align="center" colspan=9><strong>Coding Tasks</strong></td>
+<tr>
+<td align="center">HumanEval</td>
+<td align="center">Pass@1</td>
+<td align="center">74.4</td>
+<td align="center">74.4</td>
+<td align="center">84.8</td>
+<td align="center">-</td>
+<td align="center"><strong>85.9</strong></td>
+<td align="center">74.4</td>
+<td align="center">71.3</td>
+<td align="center">87.2</td>
+</tr>
+<tr>
+<td align="center">MBPP</td>
+<td align="center">Pass@1</td>
+<td align="center"><strong>88.0</strong></td>
+<td align="center">72.7</td>
+<td align="center">79.2</td>
+<td align="center">-</td>
+<td align="center">77.0</td>
+<td align="center">65.3</td>
+<td align="center">63.2</td>
+<td align="center">-</td>
+</tr>
+</tbody>
+</table>
+</div>
 
-[HF Chat Demo](https://huggingface.co/spaces/Infinigence/Megrez-3B-Omni)
+## 如何运行
 
-### 本地部署
+### Transformers
 
-环境安装和vLLM推理代码等部署问题请参考 [Infini-Megrez-Omni](https://github.com/infinigence/Infini-Megrez-Omni)
+推荐使用最新版本的 `transformers` 或者 `transformers>=4.52.4` 的版本。
+以下是一个非常简单的代码片段示例，展示如何运行 Megrez2-3x7B-A3B-Preview 模型：
 
-如下是一个使用transformers进行推理的例子，通过在content字段中分别传入text、image和audio，可以图文/图音等多种模态和模型进行交互。
 ```python
+from transformers import AutoModelForCausalLM, AutoTokenizer
 import torch
-from transformers import AutoModelForCausalLM
 
-path = "{{PATH_TO_PRETRAINED_MODEL}}"  # Change this to the path of the model.
+path = "Infinigence/Megrez2-3x7B-A3B-Preview"
+device = "cuda"
 
-model = (
-    AutoModelForCausalLM.from_pretrained(
-        path,
-        trust_remote_code=True,
-        torch_dtype=torch.bfloat16,
-        attn_implementation="flash_attention_2",
-    )
-    .eval()
-    .cuda()
+tokenizer = AutoTokenizer.from_pretrained(path, trust_remote_code=True)
+model = AutoModelForCausalLM.from_pretrained(path, torch_dtype=torch.bfloat16, device_map=device, trust_remote_code=True)
+
+messages = [
+    {"role": "user", "content": "世界上最高的山峰是哪座？"},
+]
+model_inputs = tokenizer.apply_chat_template(messages, return_tensors="pt", add_generation_prompt=True).to(device)
+
+model_outputs = model.generate(
+    model_inputs,
+    do_sample=True,
+    max_new_tokens=1024
 )
 
-# Chat with text and image
-messages = [
-    {
-        "role": "user",
-        "content": {
-            "text": "Please describe the content of the image.",
-            "image": "./data/sample_image.jpg",
-        },
-    },
+output_token_ids = [
+    model_outputs[i][len(model_inputs[i]):] for i in range(len(model_inputs))
 ]
 
-# Chat with audio and image
-messages = [
-    {
-        "role": "user",
-        "content": {
-            "image": "./data/sample_image.jpg",
-            "audio": "./data/sample_audio.m4a",
-        },
-    },
-]
+responses = tokenizer.batch_decode(output_token_ids, skip_special_tokens=True)[0]
+print(responses)
 
-MAX_NEW_TOKENS = 100
-response = model.chat(
-    messages,
-    sampling=False,
-    max_new_tokens=MAX_NEW_TOKENS,
-    temperature=0,
-)
-print(response)
+# 世界上最高的山峰是珠穆朗玛峰（Mount Everest），位于喜马拉雅山脉的中尼边境。珠穆朗玛峰的海拔高度为8,848.86米（29,031.7英尺），这一数据是由中国和尼泊尔在2020年共同宣布的最新测量结果。珠穆朗玛峰不仅是登山爱好者的圣地，也是地理和科学研究的重要对象。
 ```
 
-## 注意事项
-1. 请将图片尽量在首轮输入以保证推理效果，语音和文本无此限制，可以自由切换
-2. 语音识别（ASR）场景下，只需要将content['text']修改为“将语音转化为文字。”
-3. OCR场景下开启采样可能会引入语言模型幻觉导致的文字变化，可考虑关闭采样进行推理（sampling=False），但关闭采样可能引入模型复读
+### ModelScope
 
-# Megrez-3B
+`ModelScope` 采用了与 `Transformers` 类似（但不完全一致）的编程接口。对于基础使用，仅需将上面代码第一行做如下修改：
 
-Megrez-3B-Instruct是由无问芯穹（[Infinigence AI](https://cloud.infini-ai.com/platform/ai)）完全自主训练的大语言模型。Megrez-3B旨在通过软硬协同理念，打造一款极速推理、小巧精悍、极易上手的端侧智能解决方案。Megrez-3B具有以下优点：
+```python
+from modelscope import AutoModelForCausalLM, AutoTokenizer
+```
 
-- 高精度：Megrez-3B虽然参数规模只有3B，但通过提升数据质量，成功弥合模型能力代差，将上一代14B模型的能力成功压缩进3B大小的模型，在主流榜单上取得了优秀的性能表现。
-- 高速度：模型小≠速度快。Megrez-3B通过软硬协同优化，确保了各结构参数与主流硬件高度适配，推理速度领先同精度模型最大300%。
-- 简单易用：模型设计之初我们进行了激烈的讨论：应该在结构设计上留出更多软硬协同的空间（如ReLU、稀疏化、更精简的结构等），还是使用经典结构便于开发者直接用起来？我们选择了后者，即采用最原始的LLaMA结构，开发者无需任何修改便可将模型部署于各种平台，最小化二次开发复杂度。
-- 丰富应用：我们提供了完整的WebSearch方案。我们对模型进行了针对性训练，使模型可以自动决策搜索调用时机，在搜索和对话中自动切换，并提供更好的总结效果。我们提供了完整的部署工程代码 [github](https://github.com/infinigence/InfiniWebSearch)，用户可以基于该功能构建属于自己的Kimi或Perplexity，克服小模型常见的幻觉问题和知识储备不足的局限。
+### llama.cpp
 
-速度精度模型大小散点图如下，位置越靠近右上表明模型越好越快。更多指标数据请见 🤗 [Megrez-3B-Instruct](https://huggingface.co/Infinigence/Megrez-3B-Instruct)
+即将到来...
 
-![MMLU](assets/mmlu.jpg)
-![MTBench](assets/mtbench.jpg)
+## 如何部署
 
-具体模型能力结果和部署代码参考 [Infini-Megrez](https://github.com/infinigence/Infini-Megrez/blob/main/megrez/README.md)
+### vLLM
 
-## WebSearch
-我们模型进行了针对性训练，并提供了完整的工程部署方案。[InfiniWebSearch](https://github.com/infinigence/InfiniWebSearch) 具有以下优势：
-1. 自动决定调用时机：自动决策搜索调用时机，在搜索和对话中自动切换，避免一直调用或一直不调用
-2. 上下文理解：根据多轮对话生成合理的搜索query或处理搜索结果，更好的理解用户意图
-3. 带参考信息的结构化输出：每个结论注明出处，便于查验
-4. 一个模型两种用法：通过sys prompt区分WebSearch功能开启与否，兼顾LLM的高精度与WebSearch的用户体验，两种能力不乱窜
+推荐 `vllm>=0.9.2` 的版本
 
-我们对模型进行了针对性训练，使模型可以自动决策搜索调用时机，在搜索和对话中自动切换，并提供更好的总结效果。我们提供了完整的部署工程代码 ，用户可以基于该功能构建属于自己的Kimi或Perplexity，克服小模型常见的幻觉问题和知识储备不足的局限。
+#### vLLM 离线
+```shell
+cd demo/vllm
+export MODEL_PATH="Infinigence/Megrez2-3x7B-A3B-Preview"
+python3 infer_vllm_offline.py $MODEL_PATH
+```
+#### vLLM 在线
+在终端中启动vLLM服务，命令如下
+```shell
+cd demo/vllm
+export MODEL_PATH="Infinigence/Megrez2-3x7B-A3B-Preview"
+python3 serve_llm_online.py serve $MODEL_PATH --gpu-memory-utilization 0.9 --served-model-name megrez-moe --trust_remote_code
+```
 
-![WebSearchDemo](assets/websearch_demo.gif)
+现在，可以通过curl发送请求
+```shell
+curl --location 'http://localhost:8000/v1/chat/completions' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer sk-123456' \
+--data '{
+    "model": "megrez-moe",
+    "messages": [
+        {
+            "role": "user",
+            "content": [
+                {
+                    "type": "text",
+                    "text": "世界上最高的山峰是哪座？"
+                }
+            ]
+        }
+    ]
+}'
+```
 
-# 开源协议及使用声明
-- 协议：本仓库中代码依照 [Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0) 协议开源。
-- 幻觉：大模型天然存在幻觉问题，用户使用过程中请勿完全相信模型生成的内容。
-- 价值观及安全性：本模型已尽全力确保训练过程中使用的数据的合规性，但由于数据的大体量及复杂性，仍有可能存在一些无法预见的问题。如果出现使用本开源模型而导致的任何问题，包括但不限于数据安全问题、公共舆论风险，或模型被误导、滥用、传播或不当利用所带来的任何风险和问题，我们将不承担任何责任。
+### SGLang
 
+推荐 `sglang>=0.4.9.post2` 的版本
+```shell
+cd demo/sglang
+export MODEL_PATH="Infinigence/Megrez2-3x7B-A3B-Preview" 
+python3 infer_sglang_offline.py $MODEL_PATH
+```
+
+
+## 最佳实践
+
+为了获得最佳性能，建议以下设置：
+
+1. 采样参数：推荐使用 Temperature=0.7 和 TopP=0.9 。
+
+2. 标准化输出格式：在基准测试时，我们建议使用提示来标准化模型输出，比如：
+    * 数学问题：在提示中包含“请逐步推理，并将最终答案放在\boxed{}中。”
+    * 选择题：在提示中添加以下 JSON 结构以标准化响应：“请在 answer 字段中仅以选择字母的形式显示您的选择，例如 "answer": "C" 。”
+
+# Megrez-3B-Omni
+
+详细信息请查看 [Infini-Megrez-Omni 仓库](https://github.com/infinigence/Infini-Megrez-Omni)
+
+# Megrez-3B-Instruct
+
+详细信息请查看 [Megrez-3B 分支](https://github.com/infinigence/Infini-Megrez/tree/Megrez-3B)
+
+# 许可声明
+
+我们所有的开源模型均采用Apache 2.0协议授权。
+
+# 引用信息
+
+如果您觉得我们的代码和模型有用，请引用以下信息。
+
+```bibtex
+@misc{li2025megrez2technicalreport,
+      title={Megrez2 Technical Report}, 
+      author={Boxun Li and Yadong Li and Zhiyuan Li and Congyi Liu and Weilin Liu and Guowei Niu and Zheyue Tan and Haiyang Xu and Zhuyu Yao and Tao Yuan and Dong Zhou and Yueqing Zhuang and Bo Zhao and Guohao Dai and Yu Wang},
+      year={2025},
+      eprint={2507.17728},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2507.17728}, 
+}
+```
+
+# 联系我们
+
+如果您有任何问题，请随时提交GitHub issue或联系[微信群组](./assets/wechat-group.jpg)。
