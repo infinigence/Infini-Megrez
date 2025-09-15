@@ -27,7 +27,7 @@
 
 # 更新日志
 
-- [2025.09.15] 发布 [Megrez2-3x7B-A3B](https://github.com/infinigence/Infini-Megrez/tree/main) 正式版本，训练数据总量从5T增加到8T，在各个测试集上表现更加均衡。
+- [2025.09.15] 发布 [Megrez2-3x7B-A3B](https://github.com/infinigence/Infini-Megrez/tree/main) 正式版本，模型结构和预览版本一致，训练数据总量从5T增加到8T，在各个测试集上表现更加均衡。
 
 - [2025.07.24] 发布 [Megrez2-3x7B-A3B-Preview](https://github.com/infinigence/Infini-Megrez/tree/main) 预览版本，专为终端设备设计的大模型，兼顾MoE的精度杠杆与Dense的总参数量友好。
 

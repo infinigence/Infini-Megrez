@@ -27,9 +27,9 @@
 
 # Changelog
 
-- [2025.09.15] 发布 [Megrez2-3x7B-A3B](https://github.com/infinigence/Infini-Megrez/tree/main) Official version, the total amount of training data increased from 5T to 8T, and the performance on testset was more balanced.
+- [2025.09.15] Release [Megrez2-3x7B-A3B](https://github.com/infinigence/Infini-Megrez/tree/main) Official version and model structure is consistent with the preview version, the total amount of training data increased from 5T to 8T, and the performances on benchmark are more balanced.
 
-- [2025.07.24] Release [Megrez2-3x7B-A3B-Preview](https://github.com/infinigence/Infini-Megrez/tree/main) Preview vision, device native large language model combines MoE architecture's accuracy and Dense models' compactness.
+- [2025.07.24] Released [Megrez2-3x7B-A3B-Preview](https://github.com/infinigence/Infini-Megrez/tree/main) Preview vision, device native large language model combines MoE architecture's accuracy and Dense models' compactness.
 
 - [2024.12.16] Released [Megrez-3B-Omni](https://huggingface.co/Infinigence/Megrez-3B-Omni) This model is an extension of the Megrez-3B-Instruct model and supports analysis of image, text, and audio modalities.
 
