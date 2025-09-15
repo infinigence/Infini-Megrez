@@ -53,7 +53,7 @@
 
 ## 模型简介
 
-Megrez2-3x7B-A3B 是专为终端设备设计的大模型，兼顾MoE的精度杠杆与Dense的总参数量友好。本次发布的为Megrez 2.0正式版本，训练数据量8T Tokens，未来我们计划提升模型的推理和Agent能力。TODO（router）
+Megrez2-3x7B-A3B 是专为终端设备设计的大模型，兼顾MoE的精度杠杆与Dense的总参数量友好。本次发布的为Megrez 2.0正式版本，训练数据量8T Tokens，未来我们计划提升模型的推理和Agent能力。
 
 ## 基础信息
 
@@ -241,7 +241,7 @@ print(vllm.__file__)
 
 2. 替换vllm相关文件
 ```shell
-cp -r ./demo/vllm/patch/layer.py <vllm_install_path>/model_executor/layers/fused_moe/
+cp ./demo/vllm/patch/layer.py <vllm_install_path>/model_executor/layers/fused_moe/
 ```
 
 #### vLLM 离线

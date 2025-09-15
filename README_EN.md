@@ -242,7 +242,7 @@ print(vllm.__file__)
 
 2. replace vllm related files
 ```shell
-cp -r ./demo/vllm/patch/layer.py <vllm_install_path>/model_executor/layers/fused_moe/
+cp ./demo/vllm/patch/layer.py <vllm_install_path>/model_executor/layers/fused_moe/
 ```
 
 #### vLLM offline
