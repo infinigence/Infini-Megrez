@@ -3,16 +3,16 @@
 
   <br>
 
-  <a href="https://huggingface.co/Infinigence/Megrez2-3x7B-A3B-Preview">
+  <a href="https://huggingface.co/Infinigence/Megrez2-3x7B-A3B">
     <b>🤗 Hugging Face</b>
   </a> &nbsp;|&nbsp;
-  <a href="https://www.modelscope.cn/models/InfiniAI/Megrez2-3x7B-A3B-Preview">
+  <a href="https://www.modelscope.cn/models/InfiniAI/Megrez2-3x7B-A3B">
     <b>🤖 Model Scope</b>
   </a> &nbsp;|&nbsp;
   <a href="./docs/tech_report.pdf">
     <b>📄 Tech Report</b>
   </a> &nbsp;|&nbsp;
-  <a href="https://huggingface.co/spaces/Infinigence/Megrez2-3x7B-A3B-Preview">
+  <a href="https://huggingface.co/spaces/Infinigence/Megrez2-3x7B-A3B">
     <b>💻 Demo</b>
   </a> &nbsp;|&nbsp;
   <a href="./assets/wechat-official.jpg">
@@ -27,7 +27,9 @@
 
 # 更新日志
 
-- [2025.07.24] 发布 [Megrez2-3x7B-A3B-Preview](https://github.com/infinigence/Infini-Megrez/tree/main) 专为终端设备设计的大模型，兼顾MoE的精度杠杆与Dense的总参数量友好。
+- [2025.09.15] 发布 [Megrez2-3x7B-A3B](https://github.com/infinigence/Infini-Megrez/tree/main) 正式版本，训练数据总量从5T增加到8T，在各个测试集上表现更加均衡。
+
+- [2025.07.24] 发布 [Megrez2-3x7B-A3B-Preview](https://github.com/infinigence/Infini-Megrez/tree/main) 预览版本，专为终端设备设计的大模型，兼顾MoE的精度杠杆与Dense的总参数量友好。
 
 - [2024.12.16] 发布 [Megrez-3B-Omni](https://huggingface.co/Infinigence/Megrez-3B-Omni) 基于Megrez-3B-Instruct 扩展，同时具备图片、文本、音频三种模态数据的理解分析能力。
 
@@ -39,6 +41,7 @@
 
 | HuggingFace | ModelScope | Wisemodel |
 |:---:|:---:|:---:|
+| [Megrez2-3x7B-A3B](https://huggingface.co/Infinigence/Megrez2-3x7B-A3B) | [Megrez2-3x7B-A3B](https://www.modelscope.cn/models/InfiniAI/Megrez2-3x7B-A3B) | [Megrez2-3x7B-A3B](https://wisemodel.cn/models/Infinigence/Megrez2-3x7B-A3B) |
 | [Megrez2-3x7B-A3B-Preview](https://huggingface.co/Infinigence/Megrez2-3x7B-A3B-Preview) | [Megrez2-3x7B-A3B-Preview](https://www.modelscope.cn/models/InfiniAI/Megrez2-3x7B-A3B-Preview) | [Megrez2-3x7B-A3B-Preview](https://wisemodel.cn/models/Infinigence/Megrez2-3x7B-A3B-Preview) |
 | [Megrez-3B-Omni](https://huggingface.co/Infinigence/Megrez-3B-Omni) | [Megrez-3B-Omni](https://www.modelscope.cn/models/InfiniAI/Megrez-3B-Omni) | [Megrez-3B-Omni](https://www.wisemodel.cn/models/Infinigence/Megrez-3B-Omni) |
 | [Megrez-3B-Instruct](https://huggingface.co/Infinigence/Megrez-3B-Instruct) | [Megrez-3B-Instruct](https://www.modelscope.cn/models/InfiniAI/Megrez-3b-Instruct) | [Megrez-3B-Instruct](https://www.wisemodel.cn/models/Infinigence/Megrez-3B-Instruct) |
@@ -46,11 +49,11 @@
 </div>
 
 
-# Megrez2-3x7B-A3B-Preview
+# Megrez2-3x7B-A3B
 
 ## 模型简介
 
-Megrez2-3x7B-A3B-Preview 是专为终端设备设计的大模型，兼顾MoE的精度杠杆与Dense的总参数量友好。本次发布的为Megrez 2.0预览版本，训练数据量5T Tokens，未来我们计划完成更大规模的数据训练，并提高模型的推理和Agent能力，正式版本预计今年年内发布。
+Megrez2-3x7B-A3B 是专为终端设备设计的大模型，兼顾MoE的精度杠杆与Dense的总参数量友好。本次发布的为Megrez 2.0正式版本，训练数据量8T Tokens，未来我们计划提升模型的推理和Agent能力。TODO（router）
 
 ## 基础信息
 
@@ -79,7 +82,7 @@ Megrez2-3x7B-A3B-Preview 是专为终端设备设计的大模型，兼顾MoE的�
 
 ## 性能测试
 
-我们使用开源评测工具 [OpenCompass](https://github.com/open-compass/opencompass) 对 Megrez2-3x7B-A3B-Preview 进行了评测，部分评测结果如下表所示。
+我们使用开源评测工具 [OpenCompass](https://github.com/open-compass/opencompass) 对 Megrez2-3x7B-A3B 进行了评测，部分评测结果如下表所示。
 
 <div align="center">
 <table>
@@ -87,14 +90,14 @@ Megrez2-3x7B-A3B-Preview 是专为终端设备设计的大模型，兼顾MoE的�
 <tr>
 <th align="center">Benchmark</th>
 <th align="center">Metric</th>
+<th align="center"><sup>Megrez2-3x7B<br>-A3B</sup></th>
 <th align="center"><sup>Megrez2-3x7B<br>-A3B-Preview</sup></th>
-<th align="center"><sup>Qwen2.5-3B</sup></th>
-<th align="center"><sup>Qwen2.5-7B</sup></th>
-<th align="center"><sup>Qwen3-4B</sup></th>
+<th align="center"><sup>SmallThinker-21B<br>-A3B-Instruct</sup></th>
+<th align="center"><sup>Qwen3-30B-A3B</sup></th>
 <th align="center"><sup>Qwen3-8B</sup></th>
-<th align="center"><sup>Phi-4-mini</sup></th>
-<th align="center"><sup>Gemma-3-4B</sup></th>
-<th align="center"><sup>GPT-4o-mini <br><sup>2024-07-18</sup></sup></th>
+<th align="center"><sup>Qwen3-4B<br>-Instruct-2507</sup></th>
+<th align="center"><sup>Phi4-14B<br>(nothink)</sup></th>
+<th align="center"><sup>Gemma3-12B</sup></th>
 </tr>
 </thead>
 <tbody>
@@ -102,115 +105,73 @@ Megrez2-3x7B-A3B-Preview 是专为终端设备设计的大模型，兼顾MoE的�
 <td align="center">Activate Params (B)</td>
 <td align="center"></td>
 <td align="center">3.0</td>
-<td align="center">3.1</td>
-<td align="center">7.6</td>
-<td align="center">4.0</td>
+<td align="center">3.0</td>
+<td align="center">3.0</td>
+<td align="center">3.3</td>
 <td align="center">8.2</td>
-<td align="center">3.8</td>
-<td align="center">4.3</td>
-<td align="center">-</td>
+<td align="center">4.0</td>
+<td align="center">14.7</td>
+<td align="center">12.2</td>
 </tr>
 <tr>
 <td align="center">Stored Params (B)</td>
 <td align="center"></td>
 <td align="center">7.5</td>
-<td align="center">3.1</td>
-<td align="center">7.6</td>
-<td align="center">4.0</td>
+<td align="center">7.5</td>
+<td align="center">21.5</td>
+<td align="center">30.5</td>
 <td align="center">8.2</td>
-<td align="center">3.8</td>
-<td align="center">4.3</td>
-<td align="center">-</td>
+<td align="center">4.0</td>
+<td align="center">14.7</td>
+<td align="center">12.2</td>
 </tr>
 <tr>
-<td align="center" colspan=9><strong>General Tasks</strong></td>
-</tr>
-<tr>
-<td align="center">C-EVAL</td>
+<td align="center">MMLU</td>
 <td align="center">EM</td>
-<td align="center"><strong>91.7</strong></td>
-<td align="center">68.2</td>
-<td align="center">76.2</td>
-<td align="center">72.2</td>
-<td align="center">77.9</td>
-<td align="center">40.0</td>
+<td align="center">85.4</td>
+<td align="center"><strong>87.5</strong></td>
+<td align="center">84.4</td>
+<td align="center">85.1</td>
+<td align="center">81.8</td>
 <td align="center">-</td>
-<td align="center">66.3</td>
+<td align="center">84.6</td>
+<td align="center">78.5</td>
 </tr>
 <tr>
-<td align="center">MMLU-Pro</td>
+<td align="center">GPQA</td>
 <td align="center">EM</td>
-<td align="center"><strong>67.6</strong></td>
-<td align="center">43.7</td>
-<td align="center">56.3</td>
-<td align="center">-</td>
-<td align="center">-</td>
-<td align="center">52.8</td>
-<td align="center">43.6</td>
-<td align="center">-</td>
+<td align="center"><strong>58.8</strong></td>
+<td align="center">28.8</td>
+<td align="center">55.0</td>
+<td align="center">44.4</td>
+<td align="center">38.9</td>
+<td align="center">62</td>
+<td align="center">55.5</td>
+<td align="center">34.9</td>
 </tr>
-<td align="center" colspan=9><strong>Instruction Tasks</strong></td>
 <tr>
-<td align="center">IF-Eval</td>
-<td align="center">Prompt Strict</td>
+<td align="center">IFEval</td>
+<td align="center">Prompt<br>Strict</td>
+<td align="center"><strong>87.7</strong></td>
 <td align="center">80.2</td>
-<td align="center">58.2</td>
-<td align="center">71.2</td>
-<td align="center">81.2</td>
-<td align="center">83.0</td>
-<td align="center">68.6</td>
-<td align="center"><strong>90.2</strong></td>
-<td align="center">80.4</td>
+<td align="center">85.8</td>
+<td align="center">84.3</td>
+<td align="center">83.9</td>
+<td align="center">83.4</td>
+<td align="center">63.2</td>
+<td align="center">74.7</td>
 </tr>
-<td align="center" colspan=9><strong>Math & STEM Tasks</strong></td>
 <tr>
 <td align="center">MATH-500</td>
 <td align="center">EM</td>
+<td align="center"><strong>87.2</strong></td>
 <td align="center">81.6</td>
-<td align="center">65.9</td>
-<td align="center">75.5</td>
-<td align="center">84.8</td>
-<td align="center"><strong>87.4</strong></td>
-<td align="center">64.0</td>
-<td align="center">75.6</td>
-<td align="center">78.2</td>
-</tr>
-<tr>
-<td align="center">GSM8K</td>
-<td align="center">EM</td>
-<td align="center">83.6</td>
-<td align="center">86.7</td>
-<td align="center">91.6</td>
+<td align="center">82.4</td>
+<td align="center">84.4</td>
+<td align="center">81.6</td>
 <td align="center">-</td>
-<td align="center"><strong>93.2</strong></td>
-<td align="center">88.6</td>
-<td align="center">89.2</td>
-<td align="center">-</td>
-</tr>
-<td align="center" colspan=9><strong>Coding Tasks</strong></td>
-<tr>
-<td align="center">HumanEval</td>
-<td align="center">Pass@1</td>
-<td align="center">74.4</td>
-<td align="center">74.4</td>
-<td align="center">84.8</td>
-<td align="center">-</td>
-<td align="center"><strong>85.9</strong></td>
-<td align="center">74.4</td>
-<td align="center">71.3</td>
-<td align="center">87.2</td>
-</tr>
-<tr>
-<td align="center">MBPP</td>
-<td align="center">Pass@1</td>
-<td align="center"><strong>88.0</strong></td>
-<td align="center">72.7</td>
-<td align="center">79.2</td>
-<td align="center">-</td>
-<td align="center">77.0</td>
-<td align="center">65.3</td>
-<td align="center">63.2</td>
-<td align="center">-</td>
+<td align="center">80.2</td>
+<td align="center">82.4</td>
 </tr>
 </tbody>
 </table>
@@ -221,13 +182,13 @@ Megrez2-3x7B-A3B-Preview 是专为终端设备设计的大模型，兼顾MoE的�
 ### Transformers
 
 推荐使用最新版本的 `transformers` 或者 `transformers>=4.52.4` 的版本。
-以下是一个非常简单的代码片段示例，展示如何运行 Megrez2-3x7B-A3B-Preview 模型：
+以下是一个非常简单的代码片段示例，展示如何运行 Megrez2-3x7B-A3B 模型：
 
 ```python
 from transformers import AutoModelForCausalLM, AutoTokenizer
 import torch
 
-path = "Infinigence/Megrez2-3x7B-A3B-Preview"
+path = "Infinigence/Megrez2-3x7B-A3B"
 device = "cuda"
 
 tokenizer = AutoTokenizer.from_pretrained(path, trust_remote_code=True)
@@ -264,25 +225,36 @@ from modelscope import AutoModelForCausalLM, AutoTokenizer
 
 ### llama.cpp
 
-即将到来...
+llama.cpp 支持在各种硬件上以最小的设置和最先进的性能来启用LLM推断。现已支持，具体请查看 [support-megrez 分支](https://github.com/infinigence/llama.cpp/tree/support-megrez)。
 
 ## 如何部署
 
 ### vLLM
 
-推荐 `vllm>=0.9.2` 的版本
+需使用 `vllm>=0.10.1` 版本。在当前版本环境下，需对 vllm 相关文件进行一次补丁替换；后续我们将提交 pull request，尽早将该修改合并至 vllm 的正式版本中。
+
+1. 找到你的vllm安装路径
+```python
+import vllm
+print(vllm.__file__)
+```
+
+2. 替换vllm相关文件
+```shell
+cp -r ./demo/vllm/patch/layer.py <vllm_install_path>/model_executor/layers/fused_moe/
+```
 
 #### vLLM 离线
 ```shell
 cd demo/vllm
-export MODEL_PATH="Infinigence/Megrez2-3x7B-A3B-Preview"
+export MODEL_PATH="Infinigence/Megrez2-3x7B-A3B"
 python3 infer_vllm_offline.py $MODEL_PATH
 ```
 #### vLLM 在线
 在终端中启动vLLM服务，命令如下
 ```shell
 cd demo/vllm
-export MODEL_PATH="Infinigence/Megrez2-3x7B-A3B-Preview"
+export MODEL_PATH="Infinigence/Megrez2-3x7B-A3B"
 python3 serve_llm_online.py serve $MODEL_PATH --gpu-memory-utilization 0.9 --served-model-name megrez-moe --trust_remote_code
 ```
 
@@ -312,7 +284,7 @@ curl --location 'http://localhost:8000/v1/chat/completions' \
 推荐 `sglang>=0.4.9.post2` 的版本
 ```shell
 cd demo/sglang
-export MODEL_PATH="Infinigence/Megrez2-3x7B-A3B-Preview" 
+export MODEL_PATH="Infinigence/Megrez2-3x7B-A3B" 
 python3 infer_sglang_offline.py $MODEL_PATH
 ```
 
