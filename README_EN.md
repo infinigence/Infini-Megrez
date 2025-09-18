@@ -181,7 +181,7 @@ We evaluated Megrez2-3x7B-A3B using the open-source evaluation tool [OpenCompass
 
 ### Transformers
 
-The latest version of `transformers` is recommended or `transformers>=4.52.4` is required.
+The version of `transformers` required is `transformers==4.53.3`.
 The following contains a code snippet illustrating how to use the model generate content based on given inputs.
 
 ```python
@@ -232,7 +232,7 @@ llama.cpp enables LLM inference with minimal setup and state-of-the-art performa
 
 ### vLLM
 
-Version `vllm>=0.10.1` is required. In the current version, a patch replacement for relevant vllm files is necessary. Going forward, we will submit a pull request to merge this modification into vllm's official version as soon as possible.
+Version `vllm==0.10.1.1` is required. In the current version, a patch replacement for relevant vllm files is necessary. Going forward, we will submit a pull request to merge this modification into vllm's official version as soon as possible.
 
 1. find your vllm installation path
 ```python
@@ -282,7 +282,7 @@ curl --location 'http://localhost:8000/v1/chat/completions' \
 
 ### SGLang
 
-`sglang>=0.4.9.post2` is recommended
+`sglang==0.4.9.post2` is recommended
 ```shell
 cd demo/sglang
 export MODEL_PATH="Infinigence/Megrez2-3x7B-A3B" 
