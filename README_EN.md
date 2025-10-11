@@ -282,7 +282,20 @@ curl --location 'http://localhost:8000/v1/chat/completions' \
 
 ### SGLang
 
-`sglang==0.4.9.post2` is recommended
+`sglang==0.4.9.post2` is recommended, In the current version, a patch replacement for relevant sglang files is necessary. Going forward, we will submit a pull request to merge this modification into sglang's official version as soon as possible.
+
+1. find your sglang installation path
+```python
+import sglang
+print(sglang.__file__)
+```
+
+2. replace sglang related files
+```shell
+cp ./demo/sglang/patch/layer.py <sglang_install_path>/srt/layers/moe/fused_moe_triton/layer.py
+```
+
+#### sglang offline
 ```shell
 cd demo/sglang
 export MODEL_PATH="Infinigence/Megrez2-3x7B-A3B" 

@@ -269,8 +269,11 @@ class MegrezMoeMoE(nn.Module):
             router_logits = self.gate(pre_gate_hidden_states)
         else:
             router_logits = self.gate(hidden_states)
+        correction_bias = (
+                self.gate.e_score_correction_bias.data if self.gate.e_score_correction_bias is not None else None
+            )
         final_hidden_states = (
-            self.experts(hidden_states=hidden_states, router_logits=router_logits) * self.routed_scaling_factor
+            self.experts(hidden_states=hidden_states, router_logits=router_logits, correction_bias=correction_bias) * self.routed_scaling_factor
         )
         if shared_output is not None:
             final_hidden_states = final_hidden_states + shared_output

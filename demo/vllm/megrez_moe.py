@@ -63,7 +63,6 @@ from vllm.model_executor.models.utils import (
     maybe_prefix,
 )
 from vllm.model_executor.models.llama import LlamaAttention
-from vllm import SamplingParams, ModelRegistry
 
 
 class MegrezMoeMLP(nn.Module):
@@ -158,6 +157,9 @@ class MegrezMoeMoE(nn.Module):
     def set_experts(self, experts):
         self.experts = experts
 
+    def set_experts_e_score_correction_bias(self):
+        self.experts.e_score_correction_bias = self.gate.e_score_correction_bias
+
     def forward(self, hidden_states: torch.Tensor, pre_gate_hidden_states: torch.Tensor = None) -> torch.Tensor:
         num_tokens, hidden_dim = hidden_states.shape
         hidden_states = hidden_states.view(-1, hidden_dim)
@@ -171,12 +173,21 @@ class MegrezMoeMoE(nn.Module):
 
         if hidden_states.dtype != torch.float16:
             final_hidden_states = (
-                self.experts(hidden_states=hidden_states, router_logits=router_logits) * self.routed_scaling_factor
+                self.experts(
+                    hidden_states=hidden_states,
+                    router_logits=router_logits,
+                    e_score_correction_bias=self.gate.e_score_correction_bias,
+                )
+                * self.routed_scaling_factor
             )
         else:
             # Fix FP16 overflow
             # See MegrezMoeDecoderLayer for more details.
-            final_hidden_states = self.experts(hidden_states=hidden_states, router_logits=router_logits)
+            final_hidden_states = self.experts(
+                hidden_states=hidden_states,
+                router_logits=router_logits,
+                e_score_correction_bias=self.gate.e_score_correction_bias,
+            )
         if shared_output is not None:
             if hidden_states.dtype != torch.float16:
                 final_hidden_states = final_hidden_states + shared_output

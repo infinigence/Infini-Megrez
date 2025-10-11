@@ -281,7 +281,20 @@ curl --location 'http://localhost:8000/v1/chat/completions' \
 
 ### SGLang
 
-推荐 `sglang==0.4.9.post2` 的版本
+推荐 `sglang==0.4.9.post2` 的版本，在当前版本环境下，需对 sglang 相关文件进行一次补丁替换；后续我们将提交 pull request，尽早将该修改合并至 sglang 的正式版本中。
+
+1. 找到你的sglang安装路径
+```python
+import sglang
+print(sglang.__file__)
+```
+
+2. 替换sglang相关文件
+```shell
+cp ./demo/sglang/patch/layer.py <sglang_install_path>/srt/layers/moe/fused_moe_triton/layer.py
+```
+
+#### sglang 离线
 ```shell
 cd demo/sglang
 export MODEL_PATH="Infinigence/Megrez2-3x7B-A3B" 
